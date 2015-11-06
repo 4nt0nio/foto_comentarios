@@ -1,0 +1,15 @@
+{% extends 'fotos/base.html' %}
+
+{% block section %}
+	<h1>Categorias<h1>
+	<hr>
+{% endblock section %}
+
+{% block maincontent %}
+<div> 
+	{% for cat in categorias %}
+		<h2><a href="{% url "fotos.views.categoria_detalle" pk=cat.pk %}">{{ cat.nombre }}</a><h2>
+	{% endfor %}
+
+</div>
+{% endblock maincontent %}

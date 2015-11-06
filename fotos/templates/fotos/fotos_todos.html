@@ -1,0 +1,29 @@
+{% extends 'fotos/base.html' %}
+{% load staticfiles %}
+
+{% block section %}
+	<h1>Fotos General</h1>
+{% endblock section %}
+
+{% block maincontent %}
+
+{% for fot in fotos %}
+	<div><h4>{{ fot.titulo }}</h4></div>
+	<div>
+		<p>{{ fot.autor }}, {{ fot.favorito }}, {{ fot.fecha_pulic }}</p>
+		<p>{{ fot.categoria }}</p>
+		<p>{{ fot.descripcion }}</p>
+	</div>
+	<div>
+		<a href="{% url "fotos.views.vista_comentario" pk=fot.pk %}" >
+			<img src="{% static fot.foto %}" style="width:200px; height:200px" >
+		</a>
+	</div>
+	<div>
+		<hr>
+		{% for com in fotos.cometario_get.all %}
+			<p>{{ com.cometario }}</p>
+		{% endfor %}
+	</div>
+{% endfor %}
+{% endblock maincontent %}

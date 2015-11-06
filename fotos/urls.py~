@@ -1,0 +1,9 @@
+from django.conf.urls import patterns, url, include
+from . import views
+
+urlpatterns = [
+    url(r'^$',views.vista_fotos, name = 'lista_fotos'),
+    url(r'^categoria/$',views.categorias, name = 'lista_categoria'),
+    url(r'^categoria/(?P<pk>[0-9]+)/detalle/$', views.categoria_detalle,name = 'detalle_categoria'),
+    #url(r'^album/$',views.vista_por_usaurio, name='vista_por_usaurio'),
+]

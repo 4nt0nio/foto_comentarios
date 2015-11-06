@@ -1,0 +1,21 @@
+{% extends 'fotos/base.html' %}
+{% load staticfiles %}
+
+{% block section %}
+	<h1>{{foto.titulo}}</h1>
+{% endblock section %}
+
+{% block maincontent %}
+
+<div>{{ foto.autor }} <br> {{foto.categoria}}</div>
+<div>
+	<p>{{foto.fecha_pulic}}</p>
+	<img src="{% static foto.foto %}" style="width:200px; height:200px" >
+	<h4>{{foto.favorito}}</h4>
+	<p>{{foto.descripcion}}</p>
+	<p><a href="{% url "fotos.views.agregar_comentario" pk=foto.pk %}">Comentar</a></p>
+</div>
+
+{% endblock maincontent %}
+
+

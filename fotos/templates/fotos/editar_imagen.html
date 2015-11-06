@@ -1,0 +1,15 @@
+{% extends 'fotos/base.html' %}
+
+
+{% block section %}
+	<h1>Nuevo Entrada</h1>
+{% endblock section %}
+
+{% block maincontent %}
+
+    <form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+    	{{ formulario.as_p }}
+    	<button type="submit" class="save btn btn-default">Guardar</button>
+    </form>
+
+{% endblock maincontent %}

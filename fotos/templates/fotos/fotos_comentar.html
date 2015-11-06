@@ -1,0 +1,17 @@
+{% extends 'fotos/base.html' %}
+{% load staticfiles %}
+
+{% block section %}
+	<h1>Comentar</h1>
+{% endblock section %}
+
+{% block maincontent %}
+
+<div>
+	<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+    	{{ formulario.as_p }}
+    	<button type="submit" class="save btn btn-default">Guardar</button>
+    </form>
+</div>
+
+{% endblock maincontent %}
