@@ -1,15 +1,18 @@
 {% extends 'fotos/base.html' %}
 
 
-{% block section %}
-	<h1>Nuevo Entrada</h1>
-{% endblock section %}
+{% block titulo %}
+	Nuevo Entrada
+{% endblock titulo %}
 
 {% block maincontent %}
+<div class="row well">
+	
+    <form enctype="multipart/form-data" method="POST" class="form-4">{% csrf_token %}
+    <h1>Nueva Imagen</h1>
 
-    <form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
     	{{ formulario.as_p }}
-    	<button type="submit" class="save btn btn-default">Guardar</button>
+    	<button type="submit" class="save btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
     </form>
-
+</div>
 {% endblock maincontent %}

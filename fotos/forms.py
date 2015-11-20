@@ -7,7 +7,6 @@ class FotoForm(forms.ModelForm):
         model = Foto
         fields = ('titulo','foto','favorito','categoria','descripcion')
 
-
 class CometarioForm(forms.ModelForm):
     class Meta:
         model = Cometario

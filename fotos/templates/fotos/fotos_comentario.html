@@ -1,19 +1,40 @@
 {% extends 'fotos/base.html' %}
 {% load staticfiles %}
 
-{% block section %}
-	<h1>{{foto.titulo}}</h1>
-{% endblock section %}
+{% block titulo %}
+	{{foto.titulo}}
+{% endblock titulo %}
 
 {% block maincontent %}
-
-<div>{{ foto.autor }} <br> {{foto.categoria}}</div>
-<div>
-	<p>{{foto.fecha_pulic}}</p>
-	<img src="{% static foto.foto %}" style="width:200px; height:200px" >
-	<h4>{{foto.favorito}}</h4>
-	<p>{{foto.descripcion}}</p>
-	<p><a href="{% url "fotos.views.agregar_comentario" pk=foto.pk %}">Comentar</a></p>
+<div class="row well">
+	<div class="col-xs-7">
+		<p class="text-primary">{{foto.titulo}}</p>
+		<img class="img-responsive img-rounded" src="{% static foto.foto %}" style="width:600px; height:500px" >
+		{% if request.user.is_authenticated %}
+		<p><a href="{% url "fotos.views.editar_imagen" pk=foto.pk %}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></p>
+		{% endif %}
+	</div>
+	<div class="col-xs-5 well">
+		<div>{{ foto.autor }} <br> {{foto.categoria}}</div>
+		<p>{{foto.fecha_pulic}}</p>
+		<h4>{{foto.favorito}}</h4>
+		<p>{{foto.descripcion}}</p>
+		<hr>
+			{% for fot in foto.cometario_set.all %}
+			<div class="un-comentario">
+				{{ fot.cometario }}
+				{% if request.user.is_authenticated %}
+				<a href="{% url "fotos.views.eliminar_comentario" pk=fot.pk pk2=foto.pk %}" class="cerrar-comentario btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+				{% endif %}
+			</div>
+			{% endfor %}
+		<p><form method="POST" class="comentario-form">{% csrf_token %}
+			Comentario:
+			{{ formulario.cometario }}
+			<button type="submit" class="save btn btn-success"><span class="glyphicon glyphicon-envelope"></span> Comentar</button>
+		</form></p>
+		
+	</div>
 </div>
 
 {% endblock maincontent %}

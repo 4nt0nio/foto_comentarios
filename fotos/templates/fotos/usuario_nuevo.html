@@ -1,0 +1,21 @@
+{% extends 'fotos/base.html' %}
+
+{% block titulo %}
+    Registro de usuario
+{% endblock titulo %}
+
+{% block maincontent %}
+<div class="row">
+    
+    <form method="POST" class="form-4">{% csrf_token %}
+    	<h1>Registrar Nuevo Usuario</h1>
+
+        {{ formulario.as_p }}
+        
+    	<p>
+        	<input type="submit" name="submit" value="Registrar">
+    	</p>
+    </form>
+
+</div>
+{% endblock maincontent %}

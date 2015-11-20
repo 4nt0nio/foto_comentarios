@@ -1,31 +1,23 @@
 {% extends 'fotos/base.html' %}
 {% load staticfiles %}
 
-{% block section  %}
-	<h2>{{ categoria.nombre }}</h2>
-	<hr>
-{% endblock section %}
+{% block titulo  %}
+	Categoria - {{ categoria.nombre }}
+{% endblock titulo %}
 
 {% block maincontent %}
-<div>
-	<table border="1px">
-		<thead>
-		</thead>
-		<tbody>
-			<tr>
-				{% for p in categoria.foto_set.all %}
-				<td>
-					<div>{{ p.titulo }}</div>
-					<div>
-						<a href="{% url "fotos.views.vista_comentario" pk=p.pk %}" >
-							<img src="{% static p.foto.url %}" style="width:200px; height:200px" >
-						</a>
-					</div>
-				</td>
-				{% endfor %}
-			</tr>
-		</tbody>
-	</table>
+<div class="row well">		
+{% for p in categoria.foto_set.all %}
+<div class="col-sm-6 col-md-4">
+<div class="thumbnail">
+      <img src="{% static p.foto.url %}" alt="IMAGINATES MMM...">
+      <div class="caption">
+        <h3>{{ p.titulo }}</h3>
+        <p>{{ p.descripcion|truncatewords:"5" }}</p>
+        <p><a href="{% url "fotos.views.vista_comentario" pk=p.pk %}" class="btn btn-primary" role="button">Ver Mas...</a></p>
+      </div>
+    </div>
 </div>
-{{ categoria.id }}, {{ categoria.nombre }}, {{ categoria.foto_set.all }}
-{% endblock maincontent %}
+{% endfor %}	
+</div>
+{% endblock %}

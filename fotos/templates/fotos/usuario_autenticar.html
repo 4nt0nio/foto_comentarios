@@ -1,0 +1,31 @@
+{% extends 'fotos/base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block titulo %}
+	Login
+{% endblock titulo %}
+
+{% block maincontent %}
+
+<form method="POST" class="form-4">{% csrf_token %}
+    <h1>Inicio de sesion</h1>
+    <p>
+        <label for="login">Nombre de Usuario: </label>
+        Usuario:
+        {{ formulario.username }}
+        {{ formulario.username.errors.as_text }}
+    </p>
+    <p>
+        <label for="password">Contraseña: </label>
+        Contraseña:
+        {{ formulario.password }}
+        {{ formulario.password.errors.as_text }}
+    </p>
+
+    <p>
+        <input type="submit" name="submit" value="Continue">
+    </p>
+</form>
+
+{% endblock maincontent %}

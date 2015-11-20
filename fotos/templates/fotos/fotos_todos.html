@@ -1,29 +1,40 @@
 {% extends 'fotos/base.html' %}
 {% load staticfiles %}
 
-{% block section %}
-	<h1>Fotos General</h1>
-{% endblock section %}
+{% block titulo %}
+	Foto - Comentario
+{% endblock titulo %}
 
 {% block maincontent %}
 
-{% for fot in fotos %}
-	<div><h4>{{ fot.titulo }}</h4></div>
-	<div>
-		<p>{{ fot.autor }}, {{ fot.favorito }}, {{ fot.fecha_pulic }}</p>
-		<p>{{ fot.categoria }}</p>
-		<p>{{ fot.descripcion }}</p>
+<div class="row well">
+{% for fot in fotos reversed %}
+<div class="col-md-12">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ fot.titulo }} 
+				{% if  fot.favorito %}
+					<a href="#" class="top-menu"><span class="glyphicon	glyphicon-star"></span></a>
+				{% else %}
+					<a href="#" class="top-menu"><span class="glyphicon	glyphicon-star-empty"></span></a>
+				{% endif %}
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="col-xs-6 col-md-4">
+				<a  href="{% url "fotos.views.vista_comentario" pk=fot.pk %}" >
+					<img class="img-rounded" src="{% static fot.foto %}" style="width:200px; height:200px" />
+				</a>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<p class="bg-info">{{ fot.fecha_pulic }}</p>
+				<p>{{ fot.categoria }}</p>
+				<p>{{ fot.descripcion }}</p>
+			</div>
+		</div>
+		
 	</div>
-	<div>
-		<a href="{% url "fotos.views.vista_comentario" pk=fot.pk %}" >
-			<img src="{% static fot.foto %}" style="width:200px; height:200px" >
-		</a>
-	</div>
-	<div>
-		<hr>
-		{% for com in fotos.cometario_get.all %}
-			<p>{{ com.cometario }}</p>
-		{% endfor %}
-	</div>
+</div>
 {% endfor %}
+</div>
 {% endblock maincontent %}

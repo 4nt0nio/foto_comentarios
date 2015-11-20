@@ -1,0 +1,23 @@
+{% extends 'fotos/base.html' %}
+{% load staticfiles %}
+
+{% block titulo %}
+	Galeria - Fotos
+{% endblock titulo %}
+
+{% block maincontent %}
+
+	<div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Galeria Fotos</h1>
+            </div>
+            {% for fot in fotos %}
+		        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+		                <a class="thumbnail" href="{% url "fotos.views.vista_comentario" pk=fot.pk %}">
+		                    <img class="img-responsive" src="{% static fot.foto %}" alt="">
+		                </a>
+		        </div>
+	        {% endfor %}
+    </div>
+
+{% endblock maincontent %}
