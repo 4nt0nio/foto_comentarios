@@ -11,7 +11,10 @@
 		<p class="text-primary">{{foto.titulo}}</p>
 		<img class="img-responsive img-rounded" src="{% static foto.foto %}" style="width:600px; height:500px" >
 		{% if request.user.is_authenticated %}
-		<p><a href="{% url "fotos.views.editar_imagen" pk=foto.pk %}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></p>
+		<p>
+			<a href="{% url "fotos.views.editar_imagen" pk=foto.pk %}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="{% url "fotos.views.eliminar_foto" pk=foto.pk %}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+		</p>
 		{% endif %}
 	</div>
 	<div class="col-xs-5 well">

@@ -118,3 +118,10 @@ def eliminar_comentario(request,pk,pk2):
 	coment = get_object_or_404(Cometario, pk = pk).delete()
 
 	return redirect('fotos.views.vista_comentario', pk=pk2)
+
+
+@login_required(login_url='/ingresar')
+def eliminar_foto(request,pk):
+	coment = get_object_or_404(Foto, pk = pk).delete()
+
+	return redirect('fotos.views.vista_fotos')

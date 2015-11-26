@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^usuario/nuevo$',views.nuevo_usuario, name='nuevo_usuario'),
     url(r'^ingresar/$',views.ingresar, name='ingresar'),
     url(r'^cerrar/$', views.cerrar_sesion,name='cerrar_sesion'),
-    url(r'^eliminar_coment/(?P<pk>[0-9]+)/foto/(?P<pk2>[0-9]+)$',views.eliminar_comentario, name='eliminar_coment'),
+    url(r'^eliminar_coment/(?P<pk>[0-9]+)/foto/(?P<pk2>[0-9]+)$',views.eliminar_comentario),
+    url(r'^eliminar_foto/(?P<pk>[0-9]+)$',views.eliminar_foto),
 ]
